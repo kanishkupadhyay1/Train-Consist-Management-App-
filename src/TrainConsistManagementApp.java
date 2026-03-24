@@ -2,47 +2,27 @@ import java.util.*;
 
 public class TrainConsistManagementApp {
 
-    public static  void addBogies(List<String> list,String type){
-            list.add(type);
-}
 
-public static void removeBogie(String type,List<String> list){
-        list.remove(type);
-}
-
-public static void checkAvailability(String type,List<String> list){
-        if(list.contains(type)){
-            System.out.println("\ncheck if "+type+" exists:");
-            System.out.println("Contains "+type+" ? : true");
-
-        }else{
-            System.out.println("\ncheck if "+type+" exists:");
-            System.out.println("Contains "+type+" ? : false");
-        }
-}
     public static void main(String[] args){
         System.out.println("========================================================");
-        System.out.println("===UC2: Add Passenger Bogies to Train (ArrayList Operations)===");
+        System.out.println("===UC3: Track Unique Bogie IDs (Set – HashSet)\n===");
         System.out.println("========================================================\n");
-        List<String> passengerBogies=new ArrayList<>();
+        Set<String> passengerBogies=new HashSet<>();
+        passengerBogies.add("BG101");
+        passengerBogies.add("BG102");
+        passengerBogies.add("BG103");
+        passengerBogies.add("BG104");
+        passengerBogies.add("BG105");
 
-        System.out.println("After Adding  Bogies:");
-        addBogies(passengerBogies,"Sleeper");
-        addBogies(passengerBogies,"Ac chair");
-        addBogies(passengerBogies,"First class");
-        System.out.println("Passenger Bogies : "+passengerBogies);
-
-
-        System.out.println("\nAfter Removing Ac chair:");
-        System.out.println("Passenger Bogies : "+passengerBogies);
-
-        checkAvailability("Sleeper",passengerBogies);
+        passengerBogies.add("BG101");
+        passengerBogies.add("BG102");
 
 
-        System.out.println("\nFinal Train Passenger Consist : "+passengerBogies);
 
-        System.out.println("UC2 operations completed successfully");
+        System.out.println("Bogie IDs Insertion :\n"+passengerBogies);
 
+        System.out.println("\n\nDuplicate are automatically ignored by HashSet.");
+        System.out.println("\nUC3 uniqueness validation completed");
 
 
 
