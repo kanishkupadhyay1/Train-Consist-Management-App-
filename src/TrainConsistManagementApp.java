@@ -5,23 +5,26 @@ public class TrainConsistManagementApp {
 
     public static void main(String[] args){
         System.out.println("========================================================");
-        System.out.println("===UC5: Preserve Insertion Order of Bogies (LinkedHashSet)===");
+        System.out.println("===UC6: Map Bogie To Capacity (HashMap)===");
         System.out.println("========================================================\n");
-        Set<String> trainConsist = new LinkedHashSet<>();
-        trainConsist.add("Engine");
-        trainConsist.add("Sleeper");
+        Map<String,Integer> trainConsist = new HashMap();
+        trainConsist.put("First Class",24);
+        trainConsist.put("Cargo",120);
+        trainConsist.put("Sleeper",72);
+        trainConsist.put("AC Chair",56);
 
-        trainConsist.add("Cargo");
-        trainConsist.add("Guard");
+        for(String key : trainConsist.keySet()){
+            System.out.println(key+" -> "+trainConsist.get(key));
+        }
 
 
 
 
 
-        System.out.println("Final Train Formation:\n"+trainConsist);
 
-        System.out.println("\nNote: LinkedHashSet preserves insertion order and remove duplicates automatically");
-        System.out.println("UC5 formation setup completed");
+
+
+        System.out.println("UC6 bogie-capaciy mapping completed...");
 
 
 
