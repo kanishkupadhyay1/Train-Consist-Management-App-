@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 class Bogie {
     String name;
@@ -38,6 +39,15 @@ public class TrainConsistManagementApp {
         for (Bogie b : bogies) {
             System.out.println(b);
         }
+        List<Bogie> filteredBogies = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
+
+        System.out.println("\nFiltered Bogies (capacity > 60):");
+        for (Bogie b : filteredBogies) {
+            System.out.println(b);
+        }
+
     }
 }
 
