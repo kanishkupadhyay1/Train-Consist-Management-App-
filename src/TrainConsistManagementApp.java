@@ -32,21 +32,39 @@ public class TrainConsistManagementApp {
                 new Bogie("Cylindrical", "Coal")
         );
 
-        boolean isSafe = bogies.stream().allMatch(b -> {
+        long loopStart = System.nanoTime();
+
+        boolean isSafeLoop = true;
+        for (Bogie b : bogies) {
+            if (b.type.equals("Cylindrical") && !b.cargo.equals("Petroleum")) {
+                isSafeLoop = false;
+                break;
+            }
+        }
+
+        long loopEnd = System.nanoTime();
+        long loopTime = loopEnd - loopStart;
+
+        long streamStart = System.nanoTime();
+
+        boolean isSafeStream = bogies.stream().allMatch(b -> {
             if (b.type.equals("Cylindrical")) {
                 return b.cargo.equals("Petroleum");
             }
             return true;
         });
 
+        long streamEnd = System.nanoTime();
+        long streamTime = streamEnd - streamStart;
+
         System.out.println("\nGoods Bogies in Train:");
         bogies.forEach(System.out::println);
 
-        if (isSafe) {
-            System.out.println("Train formation is SAFE.");
-        } else {
-            System.out.println("Train formation is NOT SAFE.");
-        }
+        System.out.println("\nLoop Validation Result: " + isSafeLoop);
+        System.out.println("Loop Execution Time (ns): " + loopTime);
+
+        System.out.println("\nStream Validation Result: " + isSafeStream);
+        System.out.println("Stream Execution Time (ns): " + streamTime);
     }
     }
 
