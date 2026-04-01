@@ -22,43 +22,19 @@ public class TrainConsistManagementApp {
     public static void main(String[] args) {
 
         List<Bogie> bogies = new ArrayList<>();
-
-        // Add bogies
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 54));
         bogies.add(new Bogie("First Class", 24));
+        bogies.add(new Bogie("Sleeper", 80));
 
-        System.out.println("Before Sorting:");
-        for (Bogie b : bogies) {
-            System.out.println(b);
-        }
+        System.out.println("Bogies in the Train:");
+        bogies.forEach(System.out::println);
 
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        int totalCapacity = bogies.stream()
+                .map(b -> b.capacity)        // extract numeric capacity
+                .reduce(0, Integer::sum);   // sum all capacities
 
-        System.out.println("\nAfter Sorting (by capacity):");
-        for (Bogie b : bogies) {
-            System.out.println(b);
-        }
-        List<Bogie> filteredBogies = bogies.stream()
-                .filter(b -> b.capacity > 60)
-                .collect(Collectors.toList());
-
-        System.out.println("\nFiltered Bogies (capacity > 60):");
-        for (Bogie b : filteredBogies) {
-            System.out.println(b);
-        }
-
-        Map<String, List<Bogie>> groupedBogies = bogies.stream()
-                .collect(Collectors.groupingBy(b -> b.name));
-
-        System.out.println("\nGrouped Bogies (by type):");
-        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
-            System.out.println(entry.getKey() + ":");
-            for (Bogie b : entry.getValue()) {
-                System.out.println("  " + b);
-            }
-        }
-
+        System.out.println("\nTotal Seating Capacity of Train: " + totalCapacity);
     }
 }
 
