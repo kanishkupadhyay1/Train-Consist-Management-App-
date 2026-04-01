@@ -48,6 +48,17 @@ public class TrainConsistManagementApp {
             System.out.println(b);
         }
 
+        Map<String, List<Bogie>> groupedBogies = bogies.stream()
+                .collect(Collectors.groupingBy(b -> b.name));
+
+        System.out.println("\nGrouped Bogies (by type):");
+        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
+            System.out.println(entry.getKey() + ":");
+            for (Bogie b : entry.getValue()) {
+                System.out.println("  " + b);
+            }
+        }
+
     }
 }
 
