@@ -1,70 +1,42 @@
 import java.util.*;
 
 
-class CargoSafetyException extends RuntimeException {
-    public CargoSafetyException(String message) {
-        super(message);
-    }
-}
+public class TrainConsistManagementApp {
 
-class Bogie {
-    String type;
-    String cargo;
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
 
+        for (int i = 0; i < n - 1; i++) {
+            boolean swapped = false;
 
-    // Constructor for goods bogie (no capacity validation needed)
-    Bogie(String type) {
-        this.type = type;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // swap
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
 
-    }
-
-
-    @Override
-    public String toString() {
-
-            return type + " -> Cargo: " + (cargo != null ? cargo : "None");
-
-    }
-
-    public void assignCargo(String cargo) {
-        try {
-            // Safety validation
-            if (this.type.equalsIgnoreCase("Rectangular") &&
-                    cargo.equalsIgnoreCase("Petroleum")) {
-                throw new CargoSafetyException("Unsafe cargo! Petroleum cannot be carried in Rectangular bogie.");
+                    swapped = true;
+                }
             }
 
-            this.cargo = cargo;
-            System.out.println("Cargo assigned successfully: " + cargo);
-
-        } catch (CargoSafetyException e) {
-            System.out.println("Error: " + e.getMessage());
-        } finally {
-            System.out.println("Assignment attempt completed for " + type + " bogie.");
+            // optimization: stop if already sorted
+            if (!swapped) break;
         }
     }
-}
-
-public class TrainConsistManagementApp {
     public static void main(String[] args) {
-
-
-        List<Bogie> bogies = Arrays.asList(
-                new Bogie("Rectangular"),
-                new Bogie("Cylindrical")
-        );
-
-// Runtime cargo assignment
-        bogies.get(0).assignCargo("Petroleum");
-        bogies.get(1).assignCargo("Petroleum");
+        int[] capacities = {72, 56, 24, 70, 60};
 
 
 
 
-        System.out.println("\nGoods Bogies in Train:");
-        bogies.forEach(System.out::println);
+        System.out.println("Before Sorting:");
+        System.out.println(Arrays.toString(capacities));
 
+        bubbleSort(capacities);
 
+        System.out.println("After Sorting:");
+        System.out.println(Arrays.toString(capacities));
     }
 }
 
